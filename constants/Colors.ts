@@ -27,8 +27,12 @@
 
 export const Colors = {
   black: "#000000",
-  light: "#D3D3D3",
-  primary: "#008299",
+  error: "red",
+  light: "#d1d1d1",
+  lightBg: "#f2f2f2",
   lightPrimary: "#60C2CF",
   secondary: "#FFA333",
+  primary: "#187088",
+  text: "#003334",
+  white: "#fff",
 };

@@ -12,12 +12,13 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import AppTextField from "@/components/AppTextField";
 import AppButton from "@/components/AppButton";
+import AppHeader from "@/components/AppHeader";
 
 const Register = () => {
   const statusBarHeight = StatusBar.currentHeight;
   return (
     <View style={[styles.container, { paddingTop: statusBarHeight }]}>
-      <MaterialCommunityIcons name="chevron-left" size={35} />
+      <AppHeader />
 
       <View style={{ marginTop: 20 }}>
         <Text style={{ fontSize: 25 }}>Hello, It's nice to meet you,</Text>

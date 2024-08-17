@@ -2,11 +2,21 @@ import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 
 import { Colors } from "@/constants/Colors";
 
-const AppButton = ({ text }) => {
+const AppButton = ({ customStyles, disabled, text }) => {
   return (
-    <TouchableOpacity>
-      <View style={styles.button}>
-        <Text style={{ fontSize: 15, color: "#fff" }}>{text && text}</Text>
+    <TouchableOpacity disabled={disabled}>
+      <View
+        style={[
+          styles.button,
+          customStyles,
+          {
+            backgroundColor: disabled ? Colors.lightBg : Colors.primary,
+          },
+        ]}
+      >
+        <Text style={{ fontSize: 16, color: "#fff", fontWeight: "500" }}>
+          {text && text}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -15,7 +25,6 @@ const AppButton = ({ text }) => {
 const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    backgroundColor: Colors.primary,
     borderRadius: 10,
     height: 53,
     justifyContent: "center",
