@@ -1,24 +1,23 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
 import { Colors } from "@/constants/Colors";
+import StyledText from "./StyledText";
 
 const MediumBox = ({ title, subtitle, iconSource }) => {
   return (
     <View style={styles.container}>
       <View>
         <Image source={iconSource} />
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: "500",
-            color: Colors.lightPrimary,
-          }}
-        >
+        <StyledText color={Colors.lightPrimary} type="body" variant="semibold">
           {title}
-        </Text>
-        <Text style={{ fontSize: 12, color: Colors.lightPrimary }}>
+        </StyledText>
+        <StyledText
+          color={Colors.lightPrimary}
+          style={{ fontSize: 12 }}
+          variant="regular"
+        >
           {subtitle}
-        </Text>
+        </StyledText>
       </View>
     </View>
   );

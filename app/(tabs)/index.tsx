@@ -15,17 +15,18 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { Colors } from "@/constants/Colors";
 import MediumBox from "@/components/MediumBox";
+import StyledText from "@/components/StyledText";
 
 const ScreenComponent = ({ children }) => {
   const statusBarHeight = StatusBar.currentHeight;
   return (
     <>
-      <ExpoStatusBar style="light" />
+      <ExpoStatusBar style="dark" />
       {Platform.OS === "ios" ? (
         <SafeAreaView>
           <ScrollView>
             <Image
-              source={require("../assets/images/layer.png")}
+              source={require("../../assets/images/layer.png")}
               style={styles.layer}
             />
             <View style={styles.container}>{children}</View>
@@ -39,7 +40,7 @@ const ScreenComponent = ({ children }) => {
               contentContainerStyle={{ flexGrow: 1 }}
             >
               <Image
-                source={require("../assets/images/layer.png")}
+                source={require("../../assets/images/layer.png")}
                 style={styles.layer}
               />
               {children}
@@ -51,7 +52,7 @@ const ScreenComponent = ({ children }) => {
   );
 };
 
-const Home = () => {
+const index = () => {
   const screenWidth = Dimensions.get("screen").width;
   return (
     <ScreenComponent>
@@ -66,21 +67,15 @@ const Home = () => {
             justifyContent: "center",
             position: "absolute",
             right: 15,
-            top: -165,
+            top: -155,
           }}
         >
-          <Image source={require("../assets/icons/notification.png")} />
+          <Image source={require("../../assets/icons/notification.png")} />
         </View>
         <View style={{ zIndex: 5, position: "absolute", top: -100, left: 15 }}>
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "600",
-              color: Colors.white,
-            }}
-          >
+          <StyledText color={Colors.white} variant="bold" type="subheading">
             Hello, Temitope
-          </Text>
+          </StyledText>
         </View>
 
         <View
@@ -99,16 +94,10 @@ const Home = () => {
           ]}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
-            <Image source={require("../assets/icons/empty-wallet.png")} />
-            <Text
-              style={{
-                fontSize: 17,
-                fontWeight: "500",
-                color: Colors.lightPrimary,
-              }}
-            >
+            <Image source={require("../../assets/icons/empty-wallet.png")} />
+            <StyledText color={Colors.primary} type="title" variant="medium">
               Wallet Balance
-            </Text>
+            </StyledText>
           </View>
 
           <View
@@ -119,11 +108,9 @@ const Home = () => {
               marginVertical: 12,
             }}
           >
-            <Text
-              style={{ fontSize: 25, fontWeight: "700", color: Colors.text }}
-            >
-              #274,903.00
-            </Text>
+            <StyledText type="heading" variant="bold">
+              ₦274,903.00
+            </StyledText>
             <MaterialCommunityIcons
               name="eye-off-outline"
               size={25}
@@ -152,12 +139,12 @@ const Home = () => {
                 width: "45%",
               }}
             >
-              <Image source={require("../assets/icons/receive-square-2.png")} />
-              <Text
-                style={{ color: Colors.text, fontSize: 15, fontWeight: "500" }}
-              >
+              <Image
+                source={require("../../assets/icons/receive-square-2.png")}
+              />
+              <StyledText color={Colors.text} type="body" variant="medium">
                 Deposit
-              </Text>
+              </StyledText>
             </View>
 
             <View
@@ -173,12 +160,10 @@ const Home = () => {
                 width: "45%",
               }}
             >
-              <Image source={require("../assets/icons/send-sqaure-2.png")} />
-              <Text
-                style={{ color: Colors.text, fontSize: 15, fontWeight: "500" }}
-              >
+              <Image source={require("../../assets/icons/send-sqaure-2.png")} />
+              <StyledText color={Colors.text} type="body" variant="medium">
                 Withdraw
-              </Text>
+              </StyledText>
             </View>
           </View>
         </View>
@@ -201,7 +186,7 @@ const Home = () => {
               gap: 2,
             }}
           >
-            <Image source={require("../assets/icons/flash.png")} />
+            <Image source={require("../../assets/icons/flash.png")} />
             <Text
               style={{
                 color: Colors.lightPrimary,
@@ -223,22 +208,22 @@ const Home = () => {
             }}
           >
             <MediumBox
-              iconSource={require("../assets/icons/status-up.png")}
+              iconSource={require("../../assets/icons/status-up.png")}
               title={"Invest Money"}
               subtitle={"Lorem ipsum is simply dummy text of the print"}
             />
             <MediumBox
-              iconSource={require("../assets/icons/status-up.png")}
+              iconSource={require("../../assets/icons/status-up.png")}
               title={"Invest Money"}
               subtitle={"Lorem ipsum is simply dummy text of the print"}
             />
             <MediumBox
-              iconSource={require("../assets/icons/status-up.png")}
+              iconSource={require("../../assets/icons/status-up.png")}
               title={"Invest Money"}
               subtitle={"Lorem ipsum is simply dummy text of the print"}
             />
             <MediumBox
-              iconSource={require("../assets/icons/status-up.png")}
+              iconSource={require("../../assets/icons/status-up.png")}
               title={"Invest Money"}
               subtitle={"Lorem ipsum is simply dummy text of the print"}
             />
@@ -246,7 +231,7 @@ const Home = () => {
         </View>
 
         <Image
-          source={require("../assets/images/banner.png")}
+          source={require("../../assets/images/banner.png")}
           style={{ width: "100%", height: 90, borderRadius: 12 }}
           // resizeMode="contain"
         />
@@ -268,4 +253,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default index;

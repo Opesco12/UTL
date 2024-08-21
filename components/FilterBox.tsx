@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import { Colors } from "@/constants/Colors";
+import StyledText from "./StyledText";
 
 const FilterBox = ({ text }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{text}</Text>
+      <StyledText type="body" variant="medium" color={Colors.lightPrimary}>
+        {text}
+      </StyledText>
     </View>
   );
 };

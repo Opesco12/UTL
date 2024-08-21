@@ -9,7 +9,7 @@ import AppButton from "@/components/AppButton";
 
 const ConfirmInvestment = () => {
   return (
-    <LayeredScreen>
+    <LayeredScreen customStyles={{ paddingHorizontal: 0 }}>
       <View style={styles.container}>
         <View
           style={{
@@ -149,6 +149,7 @@ const ConfirmInvestment = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.lightBg,
+    flex: 1,
     paddingHorizontal: 15,
   },
 });

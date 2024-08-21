@@ -1,12 +1,22 @@
 import { Text, View, StyleSheet } from "react-native";
 import { Icon, Input } from "@rneui/base";
+import { useFormikContext } from "formik";
 
 import { Colors } from "@/constants/Colors";
+import StyledText from "./StyledText";
 
-const AppTextField = ({ label, rightIcon, ...props }) => {
+const AppTextField = ({ label, rightIcon, name, ...props }) => {
+  const { values, errors, touched } = useFormikContext();
   return (
-    <View>
-      <Text style={{ color: Colors.primary, fontSize: 15 }}>{label}</Text>
+    <View style={styles.container}>
+      <StyledText
+        color={Colors.primary}
+        type="label"
+        variant="medium"
+        style={{ marginBottom: 2 }}
+      >
+        {label}
+      </StyledText>
       <Input
         containerStyle={{
           paddingHorizontal: 0,
@@ -17,15 +27,22 @@ const AppTextField = ({ label, rightIcon, ...props }) => {
         inputContainerStyle={styles.input}
         inputStyle={{ paddingHorizontal: 8 }}
         rightIcon={rightIcon}
+        {...props}
+        value={values[name]}
       />
-      <Text style={{ color: Colors.error, fontSize: 14 }}>
-        Minimum amount to invest is #200,000.00
-      </Text>
+      {touched[name] && errors[name] && (
+        <StyledText color={Colors.error} type="label" variant="medium">
+          {errors[name]}
+        </StyledText>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginVertical: 5,
+  },
   input: {
     borderColor: Colors.light,
     borderRadius: 8,

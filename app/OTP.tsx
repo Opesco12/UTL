@@ -3,19 +3,22 @@ import { StyleSheet, Text, View } from "react-native";
 import Screen from "@/components/Screen";
 import AppHeader from "@/components/AppHeader";
 import AppButton from "@/components/AppButton";
-import AppLargeText from "@/components/AppLargeText";
 import { Colors } from "@/constants/Colors";
 import Otp_Input from "@/components/Otp_Input";
+import StyledText from "@/components/StyledText";
+import NumberPad from "@/components/AppNumericPad";
 
 const Otp = () => {
   return (
     <Screen>
       <AppHeader />
-      <AppLargeText text={"OTP Verification"} />
-      <Text style={{ fontSize: 15, color: Colors.light }}>
+      <StyledText type="heading" variant="semibold" style={{ marginTop0: 25 }}>
+        OTP Verification
+      </StyledText>
+      <StyledText type="body" variant="medium" color={Colors.light}>
         We have sent an OTP verification to your email address
-        evelyn********@gmail.com. Enter the code belo to verify
-      </Text>
+        evelyn********@gmail.com. Enter the code below to verify
+      </StyledText>
       <View style={{ marginTop: 25 }}>
         <Otp_Input />
 
@@ -35,6 +38,7 @@ const Otp = () => {
         </View>
         <AppButton text={"Continue"} />
       </View>
+      <NumberPad />
     </Screen>
   );
 };

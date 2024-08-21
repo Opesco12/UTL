@@ -25,15 +25,16 @@ const Screen = ({ children, customStyles }) => {
           <View
             style={[
               styles.container,
-              { paddingTop: statusBarHeight },
+              { paddingTop: statusBarHeight, paddingHorizontal: 15 },
               customStyles,
             ]}
           >
             <ScrollView
               style={{ flex: 1 }}
               contentContainerStyle={{ flexGrow: 1 }}
+              showsVerticalScrollIndicator={false}
             >
-              <View style={{ flex: 1, paddingHorizontal: 15 }}>{children}</View>
+              <View style={{ flex: 1 }}>{children}</View>
             </ScrollView>
           </View>
         )
@@ -44,7 +45,7 @@ const Screen = ({ children, customStyles }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.lightBg,
+    backgroundColor: Colors.white,
     flex: 1,
   },
 });
