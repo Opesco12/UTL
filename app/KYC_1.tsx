@@ -10,6 +10,7 @@ import AppButton from "@/components/AppButton";
 import AppPicker from "@/components/AppPicker";
 import StyledText from "@/components/StyledText";
 import AppHeader from "@/components/AppHeader";
+import Screen from "@/components/Screen";
 
 const KYC_1 = () => {
   const statusBarHeight = StatusBar.currentHeight;
@@ -25,7 +26,7 @@ const KYC_1 = () => {
   ];
 
   return (
-    <View style={[styles.container, { paddingTop: statusBarHeight }]}>
+    <Screen>
       <AppHeader />
       <View style={{ marginTop: 20 }}>
         <StyledText type="heading" variant="semibold">
@@ -52,11 +53,7 @@ const KYC_1 = () => {
                 name="bvn"
                 onChangeText={handleChange("bvn")}
               />
-              {/* <AppTextField
-                label={"Government Issued Identification"}
-                name="govId"
-                onChangeText={handleChange("govId")}
-              /> */}
+
               <AppPicker
                 label={"Government Issued Identification"}
                 placeholder={"Select Document Type"}
@@ -84,7 +81,7 @@ const KYC_1 = () => {
                   size={20}
                   color={Colors.primary}
                 />
-                Upload ID Document
+                Upload File (JPG, PNG, PDF)
               </AppButton>
 
               <AppButton
@@ -97,14 +94,10 @@ const KYC_1 = () => {
           )}
         </Formik>
       </View>
-    </View>
+    </Screen>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 10,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default KYC_1;

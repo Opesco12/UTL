@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     minHeight: 200,
-    padding: 10,
+    padding: 20,
   },
   modalText: {
     fontSize: 18,

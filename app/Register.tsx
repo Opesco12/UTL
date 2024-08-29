@@ -6,17 +6,24 @@ import {
   StatusBar,
   TouchableOpacity,
 } from "react-native";
+import { useState } from "react";
 import { Icon, Input, Button } from "@rneui/themed";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import axios from "axios";
 
 import { Colors } from "@/constants/Colors";
 import AppTextField from "@/components/AppTextField";
 import AppButton from "@/components/AppButton";
 import AppHeader from "@/components/AppHeader";
+import Screen from "@/components/Screen";
+import StyledText from "@/components/StyledText";
+
+import { registerNewIndividual, getCurrencies } from "../api/index";
 
 const Register = () => {
+  const [hidePassword, setHidePassword] = useState(true);
   const statusBarHeight = StatusBar.currentHeight;
 
   const validationSchema = Yup.object().shape({
@@ -47,15 +54,21 @@ const Register = () => {
       )
       .required("Password is required"),
   });
+
+  const handlePress = async () => {};
+
   return (
-    <View style={[styles.container, { paddingTop: statusBarHeight }]}>
+    <Screen>
       <AppHeader />
 
       <View style={{ marginTop: 20 }}>
-        <Text style={{ fontSize: 25 }}>Hello, It's nice to meet you,</Text>
-        <Text style={{ fontSize: 15, color: Colors.light }}>
+        <StyledText type="heading" variant="semibold">
+          Hello, It's nice to meet you
+        </StyledText>
+
+        <StyledText color={Colors.light} type="body" variant="medium">
           Sign up for an account below
-        </Text>
+        </StyledText>
 
         <Formik
           validationSchema={validationSchema}
@@ -68,7 +81,7 @@ const Register = () => {
           }}
           onSubmit={(values) => console.log(values)}
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+          {({ handleChange, handleSubmit }) => (
             <View style={{ marginTop: 20 }}>
               <AppTextField
                 onChangeText={handleChange("firstname")}
@@ -97,37 +110,35 @@ const Register = () => {
                 rightIcon={
                   <Icon
                     type="material-community"
-                    name="eye-off-outline"
+                    name={hidePassword ? "eye-off-outline" : "eye-outline"}
+                    onPress={() => setHidePassword(!hidePassword)}
                     color={Colors.light}
                   />
                 }
+                secureTextEntry={hidePassword ? true : false}
               />
 
-              <Text
-                style={{
-                  alignSelf: "center",
-                  color: Colors.light,
-                  fontSize: 14,
-                  marginVertical: 20,
-                  textAlign: "center",
-                  width: "60%",
-                }}
+              <StyledText
+                color={Colors.light}
+                style={{ textAlign: "center", marginVertical: 20 }}
               >
                 By Signing up, you agree to{" "}
-                <Text style={{ color: Colors.primary }}>
+                <StyledText color={Colors.primary}>
                   Terms of Use and Privacy Policy
-                </Text>
-              </Text>
-              <AppButton text={"Proceed"} onPress={handleSubmit} />
-              <Text style={{ marginTop: 15, textAlign: "center" }}>
-                Already have an account?{" "}
-                <Text style={{ color: Colors.primary }}>Login</Text>
-              </Text>
+                </StyledText>
+              </StyledText>
+
+              <AppButton onPress={handleSubmit}>Proceed</AppButton>
+
+              <StyledText style={{ marginVertical: 20, textAlign: "center" }}>
+                Already have an account{" "}
+                <StyledText color={Colors.primary}>Login</StyledText>
+              </StyledText>
             </View>
           )}
         </Formik>
       </View>
-    </View>
+    </Screen>
   );
 };
 

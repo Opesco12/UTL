@@ -1,19 +1,24 @@
 import { Image, StyleSheet, Text, View } from "react-native";
+import {} from "iconsax-react-native";
 
 import { Colors } from "@/constants/Colors";
 import StyledText from "./StyledText";
 
-const MediumBox = ({ title, subtitle, iconSource }) => {
+const MediumBox = ({ title, subtitle, icon }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Image source={iconSource} />
-        <StyledText color={Colors.lightPrimary} type="body" variant="semibold">
+        {icon}
+        <StyledText
+          color={Colors.lightPrimary}
+          type="subheading"
+          variant="semibold"
+        >
           {title}
         </StyledText>
         <StyledText
           color={Colors.lightPrimary}
-          style={{ fontSize: 12 }}
+          style={{ fontSize: 12, lineHeight: 12 }}
           variant="regular"
         >
           {subtitle}
@@ -28,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderRadius: 12,
     minHeight: 90,
-    padding: 10,
+    padding: 20,
     width: "48%",
   },
 });

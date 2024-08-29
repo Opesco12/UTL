@@ -12,6 +12,7 @@ import {
   FontAwesome6,
 } from "@expo/vector-icons";
 import { Header } from "@rneui/base";
+import { useNavigation } from "@react-navigation/native";
 
 import Screen from "@/components/Screen";
 import { Colors } from "@/constants/Colors";
@@ -22,7 +23,7 @@ import AppDivider from "@/components/AppDivider";
 
 const Products = () => {
   const statusBarHeight = StatusBar.currentHeight;
-
+  const navigation = useNavigation();
   return (
     <Screen
       customStyles={{
@@ -43,11 +44,11 @@ const Products = () => {
         }
         backgroundColor={Colors.white}
         containerStyle={{ elevation: 5 }}
-        statusBarProps={{
-          translucent: true,
-          barStyle: "light-content",
-          backgroundColor: "rgba(0,0,0,0.5)",
-        }}
+        // statusBarProps={{
+        //   translucent: true,
+        //   barStyle: "light-content",
+        //   backgroundColor: "rgba(0,0,0,0.5)",
+        // }}
       />
       <View style={{ padding: 15 }}>
         <StyledText type="label" variant="medium" color={Colors.primary}>
@@ -74,7 +75,7 @@ const Products = () => {
             borderRadius: 12,
           }}
         >
-          <Product />
+          <Product onPress={() => navigation.navigate("Product Details")} />
           <AppDivider />
           <Product />
           <AppDivider />

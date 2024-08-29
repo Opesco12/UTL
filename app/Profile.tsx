@@ -1,5 +1,6 @@
 import { Image, StyleSheet, SectionList, Text, View } from "react-native";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import Screen from "@/components/Screen";
 import AppHeader from "@/components/AppHeader";
@@ -9,6 +10,7 @@ import StyledText from "@/components/StyledText";
 import AppListItem from "@/components/AppListItem";
 
 const Profile = () => {
+  const navigation = useNavigation();
   const [hideBalance, setHideBalance] = useState(false);
   const [usePin, setUsePin] = useState(false);
   return (
@@ -65,7 +67,10 @@ const Profile = () => {
             value={usePin}
             setValue={() => setUsePin(!usePin)}
           />
-          <AppListItem text={"PIN / Face ID Settings"} />
+          <AppListItem
+            text={"PIN / Face ID Settings"}
+            onPress={() => navigation.navigate("Pin Settings")}
+          />
           <AppListItem text={"Lock My Account"} />
           <AppListItem text={"Change Security Settings"} />
           <AppListItem text={"Support"} />

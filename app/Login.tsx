@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { Icon } from "@rneui/base";
 
 import { Colors } from "@/constants/Colors";
 import AppHeader from "@/components/AppHeader";
@@ -10,6 +12,7 @@ import AppTextField from "@/components/AppTextField";
 import StyledText from "@/components/StyledText";
 
 const Login = () => {
+  const [hidePassword, setHidePassword] = useState(true);
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Email is not valid")
@@ -41,9 +44,17 @@ const Login = () => {
               />
               <AppTextField
                 label={"Password"}
-                rightIcon
+                rightIcon={
+                  <Icon
+                    type="material-community"
+                    name={hidePassword ? "eye-off-outline" : "eye-outline"}
+                    color={Colors.light}
+                    onPress={() => setHidePassword(!hidePassword)}
+                  />
+                }
                 name={"password"}
                 onChangeText={handleChange("password")}
+                secureTextEntry={hidePassword ? true : false}
               />
               <View
                 style={{
@@ -51,7 +62,7 @@ const Login = () => {
                   justifyContent: "center",
                 }}
               >
-                <AppButton text={"Login"} onPress={handleSubmit} />
+                <AppButton onPress={handleSubmit}>Login</AppButton>
                 <StyledText
                   style={{ textAlign: "center", marginTop: 15 }}
                   type="body"

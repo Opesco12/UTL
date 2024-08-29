@@ -12,6 +12,17 @@ import {
 } from "react-native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  EmptyWallet,
+  Notification,
+  ReceiveSquare2,
+  TransmitSqaure2,
+  StatusUp,
+  FavoriteChart,
+  ReceiptText,
+  Reserve,
+  Flash,
+} from "iconsax-react-native";
 
 import { Colors } from "@/constants/Colors";
 import MediumBox from "@/components/MediumBox";
@@ -52,7 +63,7 @@ const ScreenComponent = ({ children }) => {
   );
 };
 
-const index = () => {
+const Index = () => {
   const screenWidth = Dimensions.get("screen").width;
   return (
     <ScreenComponent>
@@ -70,7 +81,7 @@ const index = () => {
             top: -155,
           }}
         >
-          <Image source={require("../../assets/icons/notification.png")} />
+          <Notification size={25} color={Colors.primary} variant="Bold" />
         </View>
         <View style={{ zIndex: 5, position: "absolute", top: -100, left: 15 }}>
           <StyledText color={Colors.white} variant="bold" type="subheading">
@@ -94,7 +105,7 @@ const index = () => {
           ]}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
-            <Image source={require("../../assets/icons/empty-wallet.png")} />
+            <EmptyWallet size={25} color={Colors.primary} variant="Bold" />
             <StyledText color={Colors.primary} type="title" variant="medium">
               Wallet Balance
             </StyledText>
@@ -122,7 +133,7 @@ const index = () => {
             style={{
               flexDirection: "row",
               alignItems: "flex-end",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               flex: 1,
             }}
           >
@@ -136,11 +147,13 @@ const index = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 3,
-                width: "45%",
+                width: "47%",
               }}
             >
-              <Image
-                source={require("../../assets/icons/receive-square-2.png")}
+              <ReceiveSquare2
+                size={27}
+                color={Colors.secondary}
+                variant="Bold"
               />
               <StyledText color={Colors.text} type="body" variant="medium">
                 Deposit
@@ -157,10 +170,14 @@ const index = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 3,
-                width: "45%",
+                width: "47%",
               }}
             >
-              <Image source={require("../../assets/icons/send-sqaure-2.png")} />
+              <TransmitSqaure2
+                size={27}
+                color={Colors.primary}
+                variant="Bold"
+              />
               <StyledText color={Colors.text} type="body" variant="medium">
                 Withdraw
               </StyledText>
@@ -186,16 +203,15 @@ const index = () => {
               gap: 2,
             }}
           >
-            <Image source={require("../../assets/icons/flash.png")} />
-            <Text
-              style={{
-                color: Colors.lightPrimary,
-                fontSize: 16,
-                fontWeight: "500",
-              }}
+            <Flash size={25} color={Colors.lightPrimary} variant="Bold" />
+
+            <StyledText
+              type="title"
+              variant="medium"
+              color={Colors.lightPrimary}
             >
               Quick Access
-            </Text>
+            </StyledText>
           </View>
 
           <View
@@ -208,22 +224,38 @@ const index = () => {
             }}
           >
             <MediumBox
-              iconSource={require("../../assets/icons/status-up.png")}
+              icon={
+                <StatusUp size={27} color={Colors.secondary} variant="Bold" />
+              }
               title={"Invest Money"}
               subtitle={"Lorem ipsum is simply dummy text of the print"}
             />
             <MediumBox
-              iconSource={require("../../assets/icons/status-up.png")}
+              icon={
+                <FavoriteChart
+                  size={27}
+                  color={Colors.secondary}
+                  variant="Bold"
+                />
+              }
               title={"Invest Money"}
               subtitle={"Lorem ipsum is simply dummy text of the print"}
             />
             <MediumBox
-              iconSource={require("../../assets/icons/status-up.png")}
+              icon={
+                <ReceiptText
+                  size={27}
+                  color={Colors.secondary}
+                  variant="Bold"
+                />
+              }
               title={"Invest Money"}
               subtitle={"Lorem ipsum is simply dummy text of the print"}
             />
             <MediumBox
-              iconSource={require("../../assets/icons/status-up.png")}
+              icon={
+                <Reserve size={27} color={Colors.secondary} variant="Bold" />
+              }
               title={"Invest Money"}
               subtitle={"Lorem ipsum is simply dummy text of the print"}
             />
@@ -253,4 +285,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default index;
+export default Index;

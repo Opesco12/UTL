@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
 import { Colors } from "@/constants/Colors";
 
@@ -14,10 +15,13 @@ const Screen = ({ children, customStyles }) => {
   const statusBarHeight = StatusBar.currentHeight;
   return (
     <>
+      <ExpoStatusBar style="dark" />
       {Platform.OS === "ios" ? (
         <SafeAreaView>
           <ScrollView>
-            <View style={styles.container}>{children}</View>
+            <View style={[styles.container, { paddingHorizontal: 20 }]}>
+              {children}
+            </View>
           </ScrollView>
         </SafeAreaView>
       ) : (
@@ -25,7 +29,7 @@ const Screen = ({ children, customStyles }) => {
           <View
             style={[
               styles.container,
-              { paddingTop: statusBarHeight, paddingHorizontal: 15 },
+              { paddingTop: statusBarHeight, paddingHorizontal: 20 },
               customStyles,
             ]}
           >

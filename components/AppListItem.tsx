@@ -1,22 +1,28 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Switch } from "@rneui/base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { Colors } from "@/constants/Colors";
 import StyledText from "./StyledText";
 
-const AppListItem = ({ text, switchable, value, setValue }) => {
+const AppListItem = ({onPress, text, switchable, value, setValue }) => {
   return (
-    <View style={styles.listItem}>
-      <StyledText type="title" variant="medium">
-        {text}
-      </StyledText>
-      {switchable ? (
-        <Switch value={value} onValueChange={setValue} style={{ height: 30 }} />
-      ) : (
-        <MaterialCommunityIcons name="chevron-right" size={25} />
-      )}
-    </View>
+    <Pressable onPress={onPress}>
+      <View style={styles.listItem}>
+        <StyledText type="title" variant="medium">
+          {text}
+        </StyledText>
+        {switchable ? (
+          <Switch
+            value={value}
+            onValueChange={setValue}
+            style={{ height: 30 }}
+          />
+        ) : (
+          <MaterialCommunityIcons name="chevron-right" size={25} />
+        )}
+      </View>
+    </Pressable>
   );
 };
 

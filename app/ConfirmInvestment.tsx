@@ -1,13 +1,16 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Switch } from "@rneui/base";
+import { useState } from "react";
 
 import LayeredScreen from "@/components/LayeredScreen";
 import ContentBox from "@/components/ContentBox";
 import AppDivider from "@/components/AppDivider";
 import { Colors } from "@/constants/Colors";
 import AppButton from "@/components/AppButton";
+import StyledText from "@/components/StyledText";
 
 const ConfirmInvestment = () => {
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   return (
     <LayeredScreen customStyles={{ paddingHorizontal: 0 }}>
       <View style={styles.container}>
@@ -17,15 +20,9 @@ const ConfirmInvestment = () => {
             top: -40,
           }}
         >
-          <Text
-            style={{
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: "600",
-            }}
-          >
+          <StyledText type="subheading" variant="semibold" color={Colors.white}>
             UTLAM Target Savings
-          </Text>
+          </StyledText>
         </View>
 
         <ContentBox
@@ -35,17 +32,11 @@ const ConfirmInvestment = () => {
             elelvation: 2,
           }}
         >
-          <Text
-            style={{
-              color: Colors.primary,
-              fontSize: 16,
-              fontWeight: "500",
-              marginBottom: 10,
-            }}
-          >
+          <StyledText color={Colors.primary} type="title" variant="semibold">
             Confirm Investment
-          </Text>
-          <ContentBox customStyles={{}}>
+          </StyledText>
+
+          <ContentBox customStyles={{ marginVertical: 20 }}>
             <View
               style={{
                 flexDirection: "row",
@@ -53,7 +44,9 @@ const ConfirmInvestment = () => {
                 justifyContent: "space-between",
               }}
             >
-              <Text style={{ color: Colors.light, fontSize: 15 }}>Amount</Text>
+              <StyledText color={Colors.light} type="body" variant="regular">
+                Amount
+              </StyledText>
               <Text
                 style={{
                   color: Colors.primary,
@@ -61,7 +54,7 @@ const ConfirmInvestment = () => {
                   fontSize: 22,
                 }}
               >
-                #500,000
+                ₦500,000
               </Text>
             </View>
             <AppDivider />
@@ -72,9 +65,9 @@ const ConfirmInvestment = () => {
                 justifyContent: "space-between",
               }}
             >
-              <Text style={{ color: Colors.light, fontSize: 15 }}>
+              <StyledText color={Colors.light} type="body" variant="regular">
                 Management Fee(2%)
-              </Text>
+              </StyledText>
               <Text
                 style={{
                   color: Colors.primary,
@@ -82,7 +75,7 @@ const ConfirmInvestment = () => {
                   fontSize: 22,
                 }}
               >
-                #500,000
+                ₦10,000
               </Text>
             </View>
 
@@ -95,9 +88,9 @@ const ConfirmInvestment = () => {
                 justifyContent: "space-between",
               }}
             >
-              <Text style={{ color: Colors.light, fontSize: 15 }}>
+              <StyledText color={Colors.light} type="body" variant="regular">
                 Total Due
-              </Text>
+              </StyledText>
               <Text
                 style={{
                   color: Colors.primary,
@@ -105,23 +98,21 @@ const ConfirmInvestment = () => {
                   fontSize: 22,
                 }}
               >
-                #500,000
+                ₦510,000
               </Text>
             </View>
           </ContentBox>
 
-          <Text
-            style={{ color: Colors.light, fontSize: 15, marginVertical: 20 }}
-          >
+          <StyledText color={Colors.light} type="body" variant="medium">
             Redemptions during the Lock-up Period will attract a 20% penalty on
             accrued returns eaned over the period.
-          </Text>
+          </StyledText>
 
-          <Text style={{ color: Colors.light, fontSize: 15 }}>
+          <StyledText color={Colors.light} type="body" variant="medium">
             By tapping on the "Make Payment" button, you agree to have the Total
             Due deducted from your Wallet Balannce to create this investment
             plan.
-          </Text>
+          </StyledText>
 
           <View
             style={{
@@ -130,16 +121,17 @@ const ConfirmInvestment = () => {
               marginTop: 15,
             }}
           >
-            <Switch />
-            <Text style={{ fontSize: 15, color: Colors.light }}>
+            <Switch
+              value={agreeToTerms}
+              onValueChange={() => setAgreeToTerms(!agreeToTerms)}
+            />
+            <StyledText type="body" variant="medium" color={Colors.light}>
               Yes, I agree to the terms above
-            </Text>
+            </StyledText>
           </View>
-          <AppButton
-            text={"Make Payment"}
-            disabled={true}
-            customStyles={{ marginTop: 10 }}
-          />
+          <AppButton disabled={!agreeToTerms} customStyles={{ marginTop: 20 }}>
+            Make Payment
+          </AppButton>
         </ContentBox>
       </View>
     </LayeredScreen>

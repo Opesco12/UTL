@@ -16,7 +16,8 @@ const AppButton = ({
         style={[
           styles.button,
           {
-            backgroundColor: disabled ? Colors.lightBg : Colors.primary,
+            backgroundColor: Colors.primary,
+            opacity: disabled === true ? 0.5 : 1,
           },
           customStyles,
         ]}

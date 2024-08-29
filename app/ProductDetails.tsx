@@ -1,4 +1,8 @@
 import { Image, StyleSheet, Text, View } from "react-native";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 import Screen from "@/components/Screen";
 import ContentBox from "@/components/ContentBox";
@@ -6,8 +10,12 @@ import { Colors } from "@/constants/Colors";
 import AppTextField from "@/components/AppTextField";
 import AppButton from "@/components/AppButton";
 import LayeredScreen from "@/components/LayeredScreen";
+import StyledText from "@/components/StyledText";
+import SavingDetails from "@/components/SavingDetails";
 
 const ProductDetails = () => {
+  const navigation = useNavigation();
+  const validationSchema = Yup.object().shape({});
   return (
     <LayeredScreen>
       <View style={{ backgroundColor: Colors.lightBg, flex: 1 }}>
@@ -17,16 +25,11 @@ const ProductDetails = () => {
             top: -40,
           }}
         >
-          <Text
-            style={{
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: "600",
-            }}
-          >
+          <StyledText color={Colors.white} type="subheading" variant="semibold">
             UTLAM Target Savings
-          </Text>
+          </StyledText>
         </View>
+
         <View style={styles.container}>
           <ContentBox
             customStyles={{
@@ -42,51 +45,100 @@ const ProductDetails = () => {
                 justifyContent: "center",
               }}
             >
-              <Text style={{ color: Colors.lightPrimary, fontSize: 15 }}>
+              <StyledText
+                color={Colors.lightPrimary}
+                type="title"
+                variant="semibold"
+                style={{ color: Colors.lightPrimary, fontSize: 15 }}
+              >
                 Current Balance
-              </Text>
+              </StyledText>
             </View>
-            <Text
+            <StyledText
+              type="heading"
+              variant="semibold"
+              color={Colors.primary}
               style={{
-                color: Colors.primary,
-                fontSize: 30,
-                fontWeight: "600",
                 textAlign: "center",
               }}
             >
-              #32,000,000.00
-            </Text>
+              ₦32,000,000.00
+            </StyledText>
           </ContentBox>
 
           <ContentBox
             customStyles={{
               borderColor: Colors.light,
               marginBottom: 20,
+              gap: 15,
             }}
           >
-            <View>
-              <View
-                style={{
+            <ContentBox customStyles={{ padding: 0, borderWidth: 0 }}>
+              <ContentBox
+                customStyles={{
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  padding: 0,
+                  borderWidth: 0,
                 }}
               >
-                <View>
-                  <Text>Annualized Yield</Text>
-                  <Text>8.99%</Text>
-                </View>
-                <View>
-                  <Text>Annualized Yield</Text>
-                  <Text>8.99%</Text>
-                </View>
-              </View>
-            </View>
+                <SavingDetails
+                  title={"Annualized Yield"}
+                  detail={"8.99%"}
+                  iconName={"brightness-percent"}
+                />
+                <SavingDetails
+                  title={"Min. Investment"}
+                  detail={"₦200,000"}
+                  iconName={"cash-multiple"}
+                />
+              </ContentBox>
+            </ContentBox>
+
+            <ContentBox customStyles={{ padding: 0, borderWidth: 0 }}>
+              <ContentBox
+                customStyles={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  padding: 0,
+                  borderWidth: 0,
+                }}
+              >
+                <SavingDetails
+                  title={"Min. Holding Period"}
+                  detail={"90 Days"}
+                  iconName="calendar-month"
+                />
+                <SavingDetails
+                  title={"Penalty Rate"}
+                  detail={"20%"}
+                  iconName="gavel"
+                />
+              </ContentBox>
+            </ContentBox>
           </ContentBox>
 
-          <ContentBox customStyles={{ backgroundColor: Colors.white }}>
-            <AppTextField label={"Amount to invest"} />
-            <AppButton text={"Invest now"} customStyles={{ marginTop: 20 }} />
-          </ContentBox>
+          <Formik
+            validationSchema={validationSchema}
+            initialValues={{ amount: "" }}
+            onSubmit={(values) => console.log(values)}
+          >
+            {({ handleChange, handleSubmit }) => (
+              <ContentBox customStyles={{ backgroundColor: Colors.white }}>
+                <AppTextField
+                  label={"Amount to invest"}
+                  name={"amount"}
+                  onChangeText={handleChange("amount")}
+                />
+                <AppButton
+                  customStyles={{ marginTop: 20 }}
+                  onPress={() => navigation.navigate("Confirm Investment")}
+                >
+                  Invest Now
+                </AppButton>
+              </ContentBox>
+            )}
+          </Formik>
         </View>
       </View>
     </LayeredScreen>
